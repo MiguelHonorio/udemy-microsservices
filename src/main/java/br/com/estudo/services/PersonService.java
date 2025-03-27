@@ -3,7 +3,6 @@ package br.com.estudo.services;
 import br.com.estudo.exceptions.ResourceNotFoundException;
 import br.com.estudo.model.Person;
 import br.com.estudo.repositories.PersonRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,14 +11,13 @@ import java.util.logging.Logger;
 @Service
 public class PersonService {
 
-    private Logger logger = Logger.getLogger(PersonService.class.getName());
+    private final Logger logger = Logger.getLogger(PersonService.class.getName());
 
-    @Autowired
-    PersonRepository repository;
+    private final PersonRepository repository;
 
-//    public PersonService(final PersonRepository repository) {
-//        this.repository = repository;
-//    }
+    public PersonService(PersonRepository repository) {
+        this.repository = repository;
+    }
 
     public Person findById(Long id) {
 
@@ -38,6 +36,10 @@ public class PersonService {
     public Person create(Person person) {
 
         logger.info("Creating one person");
+
+        if(person.getFirstName() == null){
+            throw new NullPointerException();
+        }
 
         return repository.save(person);
     }

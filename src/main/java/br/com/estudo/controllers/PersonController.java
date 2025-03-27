@@ -13,11 +13,15 @@ import java.util.List;
 @RequestMapping("/person")
 public class PersonController {
 
+    private final PersonService service;
+
     @Autowired
-    private PersonService service;
+    public PersonController(PersonService service) {
+        this.service = service;
+    }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person findByid(@PathVariable(value = "id") Long id) {
+    public Person findById(@PathVariable(value = "id") Long id) {
         return service.findById(id);
     }
 
