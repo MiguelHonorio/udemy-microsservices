@@ -1,6 +1,7 @@
 # Change extension of this file to .gitignore
 
 *.class
+*.shell
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
