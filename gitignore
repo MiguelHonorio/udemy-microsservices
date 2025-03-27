@@ -40,6 +40,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+/bin/
+/target/
+
 ### STS ###
 .apt_generated
 .classpath
